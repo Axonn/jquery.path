@@ -4,17 +4,17 @@
  * Released under the MIT license.
  */
 /*
-  var path = $.path.bezier({
+  var path = jQuery.path.bezier({
     start: {x:10, y:10, angle: 20, length: 0.3},
     end:   {x:20, y:30, angle: -20, length: 0.2}
   })
-  $("myobj").animate({path: path}, duration)
+  jQuery("myobj").animate({path: path}, duration)
 
 */
 
-;(function($){
+;(function(jQuery){
 
-  $.path = {};
+  jQuery.path = {};
 
   var V = {
     rotate: function(p, degrees) {
@@ -34,9 +34,9 @@
     }
   };
 
-  $.path.bezier = function( params, rotate ) {
-    params.start = $.extend( {angle: 0, length: 0.3333}, params.start );
-    params.end = $.extend( {angle: 0, length: 0.3333}, params.end );
+  jQuery.path.bezier = function( params, rotate ) {
+    params.start = jQuery.extend( {angle: 0, length: 0.3333}, params.start );
+    params.end = jQuery.extend( {angle: 0, length: 0.3333}, params.end );
 
     this.p1 = [params.start.x, params.start.y];
     this.p4 = [params.end.x, params.end.y];
@@ -72,7 +72,7 @@
     };
   };
 
-  $.path.arc = function(params, rotate) {
+  jQuery.path.arc = function(params, rotate) {
     for ( var i in params ) {
       this[i] = params[i];
     }
@@ -103,10 +103,10 @@
     };
   };
 
-  $.fx.step.path = function(fx) {
+  jQuery.fx.step.path = function(fx) {
     var css = fx.end.css( 1 - fx.pos );
     if ( css.prevX != null ) {
-      $.cssHooks.transform.set( fx.elem, "rotate(" + Math.atan2(css.prevY - css.y, css.prevX - css.x) + ")" );
+      jQuery.cssHooks.transform.set( fx.elem, "rotate(" + Math.atan2(css.prevY - css.y, css.prevX - css.x) + ")" );
     }
     fx.elem.style.top = css.top;
     fx.elem.style.left = css.left;
